@@ -17,7 +17,7 @@
     /**
      * @const
      */
-    var CONTEXT = new window.AudioContext();
+    var CONTEXT = null;
 
     /**
      * A collection of all vowel worm instances. Used for attaching modules.
@@ -357,6 +357,10 @@
      */
     window.VowelWorm.instance = function (stream) {
         var that = this;
+
+        if (!CONTEXT) {
+            CONTEXT = new window.AudioContext();;
+        }
 
         this._context = CONTEXT;
         this._analyzer = this._context.createAnalyser();
